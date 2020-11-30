@@ -55,11 +55,12 @@ public class Comprobante {
     public void setEstado(String estado) {
         this.estado = estado;
     }
-    public Date getFecha_creacion() {
+
+    public Date getFecha() {
         return fecha;
     }
-    public void setFecha_creacion(Date fecha_creacion) {
-        this.fecha = fecha_creacion;
+    public void setFecha(Date fecha) {
+        this.fecha = fecha;
     }
     public String getUsuario_creacion() {
         return usuario_creacion;

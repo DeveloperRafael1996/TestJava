@@ -1,6 +1,6 @@
 package com.Test.demo.controller;
 
-
+import com.Test.demo.dto.IEstados;
 import com.Test.demo.model.Comprobante;
 import com.Test.demo.service.ComprobanteService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +18,6 @@ import java.util.NoSuchElementException;
 @RestController
 @RequestMapping("/comprobantes")
 public class ComprobanteController {
-
     @Autowired
     private ComprobanteService comprobanteService;
 
@@ -26,13 +25,22 @@ public class ComprobanteController {
     public ResponseEntity<List<Comprobante>> getAll(){
         return new ResponseEntity<>(comprobanteService.getComprobante(), HttpStatus.OK);
     }
-    @GetMapping("/{fecha}")
-    public ResponseEntity<List<Comprobante>> get(@PathVariable Date fecha) {
+    @GetMapping("/rpt_es")
+    public List<IEstados> getEstaod(){
+        return comprobanteService.getCantidadEstado();
+    }
+    @GetMapping("report/{fecha}")
+    public ResponseEntity<List<Comprobante>> getreport(@PathVariable Date fecha) {
         try {
             return new ResponseEntity<>(comprobanteService.getFecha(fecha), HttpStatus.OK);
         } catch (NoSuchElementException e) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
+    @GetMapping("rpt_estado/{estado}")
+    public ResponseEntity<List<Comprobante>> getreportestado(@PathVariable String estado) {
+      return comprobanteService.getComprobanteEstado(estado)
+              .map(comp -> new ResponseEntity<>(comp, HttpStatus.OK))
+              .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
+    }
 }
-
