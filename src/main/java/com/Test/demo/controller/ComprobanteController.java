@@ -26,8 +26,13 @@ public class ComprobanteController {
         return new ResponseEntity<>(comprobanteService.getComprobante(), HttpStatus.OK);
     }
     @GetMapping("/rpt_es")
-    public List<IEstados> getEstaod(){
+    public List<IEstados> getEstados(){
         return comprobanteService.getCantidadEstado();
+    }
+
+    @GetMapping("/repetidos")
+    public List<Comprobante> getComproRepetidos(){
+        return comprobanteService.getComprobanteRepetidos();
     }
     @GetMapping("report/{fecha}")
     public ResponseEntity<List<Comprobante>> getreport(@PathVariable Date fecha) {

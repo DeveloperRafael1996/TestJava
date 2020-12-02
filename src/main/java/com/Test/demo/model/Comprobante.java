@@ -42,7 +42,6 @@ public class Comprobante {
     public void setComp_serie_correlativo(String comp_serie_correlativo) {
         this.comp_serie_correlativo = comp_serie_correlativo;
     }
-
     public String getRecep_numero_documento() {
         return recep_numero_documento;
     }

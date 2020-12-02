@@ -29,4 +29,7 @@ public class ComprobanteService {
     public List<IEstados> getCantidadEstado(){
         return comprobanteRepository.countTotalComprobanteByEstadoNative();
     }
+    public List<Comprobante> getComprobanteRepetidos(){
+        return comprobanteRepository.countTotalComprobanteByRepetido();
+    }
 }
