@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.sql.Date;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.NoSuchElementException;
 
@@ -25,14 +26,21 @@ public class ComprobanteController {
     public ResponseEntity<List<Comprobante>> getAll(){
         return new ResponseEntity<>(comprobanteService.getComprobante(), HttpStatus.OK);
     }
+    @GetMapping("/date")
+    public LocalDate localDate(){
+        //LocalDate date = LocalDate.now();
+        LocalDate date = LocalDate.parse("2020-07-06");
+        return  date;
+    }
     @GetMapping("/rpt_es")
     public List<IEstados> getEstados(){
         return comprobanteService.getCantidadEstado();
     }
-
     @GetMapping("/repetidos")
     public List<Comprobante> getComproRepetidos(){
-        return comprobanteService.getComprobanteRepetidos();
+        //LocalDate date = LocalDate.now();
+        LocalDate date = LocalDate.parse("2020-11-20");
+        return comprobanteService.getComprobanteRepetidos(date);
     }
     @GetMapping("report/{fecha}")
     public ResponseEntity<List<Comprobante>> getreport(@PathVariable Date fecha) {
